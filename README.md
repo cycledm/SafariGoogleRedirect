@@ -1,33 +1,25 @@
 # SafariGoogleRedirect
 
-当 iPhone 地区设置为中国大陆, Safari 设置为谷歌搜索时, 自动将访问的 Google 中国搜索页面（`www.google.cn`）和 google.com.hk 中间层页面“移除”，并重定向到 Google 国际版（`www.google.com`），iPhone 地区现在可放心设置为中国大陆, 不用改地区了。  
+当 iPhone 地区设置为中国大陆, Safari 设置为谷歌搜索时, Safari 的区域行为是将请求转发至 Google 中国（`www.google.cn`）并展示 google.com.hk 的重定向页面，该脚本则把搜索请求自动传递至 Google 国际版（`www.google.com`）无需确认, 直接搜索. iPhone 地区现在可放心设置为中国大陆, 不用更改地区。  
 
 ---
 
 ## 功能特性
 
-- **优化 URL 构造**  
+- **附加: 优化 URL 构造**  
   构造最简洁搜索 URL，仅保留 `q`（搜索关键词）参数，去除多余参数（如 `hl`、`ie`、`oe`、`client` 等），增强隐私安全, 保证搜索 URL 干净、统一。  
 
-- **加载动画改善闪烁体验**  
-  在重定向之前，页面显示 **Google Logo + CSS Loading 动画**。  
+- **附加: 加载动画**  
+  在搜索结果呈现前，页面显示 **Google Logo + CSS Loading 动画**。  
 
 - **深浅色主题自适应**  
   自动检测 iOS 系统深色/浅色模式，动画颜色和背景色随主题变化：
   - 浅色模式 → 白色背景 + 蓝色加载动画  
   - 深色模式 → 深灰背景 + 亮蓝加载动画  
 
-- **保留搜索词**  
-  智能提取并保留原搜索关键词，确保重定向后搜索结果一致、连贯。  
-
-- **轻量高效**  
-  无依赖、纯前端脚本，运行在 `document-start` 阶段，执行速度快。  
-
-- **兼容性好**  
+- **兼容性**  
  覆盖 iOS 地区设置为中国大陆, Safari 设置为谷歌搜索的所有iOS版本。
 
-- **历史记录友好**  
-  使用 `location.replace` 进行重定向，不污染浏览历史，返回键不会回到中间层页面。  
 
 ---
 
@@ -37,7 +29,7 @@
 2. 在你选择使用的扩展中, 添加脚本, URL为 [https://raw.githubusercontent.com/garinasset/SafariGoogleRedirect/main/SafariGoogleRedirect.user.js](https://raw.githubusercontent.com/garinasset/SafariGoogleRedirect/main/SafariGoogleRedirect.user.js) 
 3. 下载添加后, 启用 **Safari · Google 重定向**
 4. 在 Safari 中选择 Google 作为搜索引擎, 在地址栏键入关键词, 进行搜索时，脚本会自动
-   1. 显示临时中间层 (Logo + 动画).
+   1. 显示加载动画 (Logo + 动画).
    2. 自动跳转到 Google 国际版 [www.google.com](www.google.com) 的搜索结果页面, 搜索页面使用的就是你搜索的关键词哦.
 
 ---
