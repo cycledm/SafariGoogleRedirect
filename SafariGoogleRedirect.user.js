@@ -1,34 +1,37 @@
 // ==UserScript==
 // @name            Safari · Google 重定向
-// @namespace       https://github.com/garinasset/SafariGoogleRedirect
-// @version         1.1.1
+// @namespace       https://github.com/cycledm/SafariGoogleRedirect
+// @version         1.2.0
 //
 // @description     SafariGoogleRedirect（Safari · Google 重定向）解决当 iPhone 地区设置为中国大陆, Safari Google 搜索会跳 google.com.hk 的问题，直接搜索, 无需确认, 大大提升 Safari 用户体验。iPhone 地区现在可放心设置为中国大陆, 不用更改地区。
 //
-// @author          garinasset
+// @author          CycleDM
 // @license         MIT
 //
-// @homepageURL     https://github.com/garinasset/SafariGoogleRedirect
-// @supportURL      https://github.com/garinasset/SafariGoogleRedirect/issues
+// @homepageURL     https://github.com/cycledm/SafariGoogleRedirect
+// @supportURL      https://github.com/cycledm/SafariGoogleRedirect/issues
 //
 // @match           http://www.google.cn/search*
 // @match           https://www.google.cn/search*
 //
 // @run-at          document-start
 //
-// @updateURL       https://raw.githubusercontent.com/garinasset/SafariGoogleRedirect/main/SafariGoogleRedirect.user.js
-// @downloadURL     https://raw.githubusercontent.com/garinasset/SafariGoogleRedirect/main/SafariGoogleRedirect.user.js
+// @updateURL       https://raw.githubusercontent.com/cycledm/SafariGoogleRedirect/main/SafariGoogleRedirect.user.js
+// @downloadURL     https://raw.githubusercontent.com/cycledm/SafariGoogleRedirect/main/SafariGoogleRedirect.user.js
 // ==/UserScript==
 
 
 (function() {
     const url = new URL(location.href);
     const q = url.searchParams.get('q');
-    if (!q) return;
+    const client = url.searchParams.get('client');
+    if (!q || !client) return;
 
     // 构造最小 URL
     const cleanUrl = new URL('https://www.google.com/search');
     cleanUrl.searchParams.set('q', q);
+    // 消除 Safari 顶部横幅
+    cleanUrl.searchParams.set('client', client);
 
     // 检测用户主题模式
     const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
